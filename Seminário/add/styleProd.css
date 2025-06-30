@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+
+    /* Color´s */
+    --fundo: #225B5D;
+    --input: #BEBEBE;
+    --text: #FFFFFF;
+    --button: #00FF80;
+    --text2: #002B08;
+    --buttonHover: #b3ffd9;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+
+    background-color: var(--fundo);
+}
+
+input{
+    border: 0;
+    padding: 5px;
+    height: 30px;
+    width: 90%;
+    max-width: 1900px;
+    font-size: medium;
+    font-weight: bold;
+
+    background-color: var(--input);
+    color: var(--text);
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+
+    height: 25%;
+}
+
+/* Descrição e preço dos produtos */
+
+#dadosProd{
+    flex: 4;
+
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+
+#dadosProd > input{
+    margin: auto;
+}
+
+#dadosProd > h1{
+    margin-left: 5px;
+    
+    color: var(--text);
+}
+
+/* Adicionar Produtos */
+
+#addProd{
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form > div > img{
+    height: 70px;
+}
+
+form > div > button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60%;
+    max-width: 82px;
+    border: 0;
+    border-radius: 6px;
+    font-weight: bold;
+    padding: 5px;
+
+    background-color: var(--button);
+    color: var(--text2);
+
+    transition: 1.04s;
+}
+
+button:hover{
+    background-color: var(--buttonHover);
+    transform: scale(1.05);
+}
+
+form > div > button, img{
+    margin: auto;
+}
+
+form > div > button > img{
+    height: 28px;
+}
+
+section{
+    height: 75%;
+    padding: 10px;
+}
+
+section > div{
+    height: 90%;
+
+    background-color: var(--input);
+}

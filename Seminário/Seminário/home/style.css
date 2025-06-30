@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+
+    /* Color´s */
+    --fundo: #225B5D;
+    --input: #BEBEBE;
+    --text: #FFFFFF;
+    --button: #00FF80;
+    --text2: #002B08;
+    --buttonHover: #b3ffd9;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    width: 100vw;
+
+    background-color: var(--fundo);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+
+    height: 50%;
+    width: 50%;
+}
+
+form > img, input, button{
+    margin: auto;
+}
+
+form > img{
+    height: 70px;
+}
+
+form > input{
+    border: 0;
+    padding: 5px;
+    height: 30px;
+    width: 100%;
+    max-width: 400px;
+    font-size: medium;
+
+    background-color: var(--input);
+    color: var(--text);
+}
+
+form > button{
+    height: 30px;
+    width: 80px;
+    border: 0;
+    border-radius: 6px;
+    font-weight: bold;
+
+    background-color: var(--button);
+    color: var(--text2);
+
+    transition: 1.04s;
+}
+
+button:hover{
+    background-color: var(--buttonHover);
+    transform: scale(1.05);
+}
+
+form > p, a{
+    color: var(--text);
+}
+
+form > a{
+    font-weight: bold;
+}
+
+
+

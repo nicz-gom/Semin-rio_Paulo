@@ -3,34 +3,29 @@ session_start();
 include '../../database/database.php';
 include 'Produto.php';
 
+$nome = $_POST['nome'] ?? '';
+$preco = $_POST['preco'] ?? '';
 $erros = [];
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $nomeProd = $_POST['nome'];
-    $precoProd = $_POST['preco'];
+if (empty($nome) || empty($preco)) {
+    $erros[] = "Preencha todos os campos!";
+} elseif (!is_numeric($preco)) {
+    $erros[] = "O preço deve ser um número!";
+}
 
-    if(empty($nomeProd) || empty($precoProd)){
-        $erros [] = 'Preencha os campos acima!';
-    }
-
-    if(!is_numeric($precoProd)){
-        $erros [] = 'Somente número!';
-    }
-
-    if(!empty($erros)){
-         $_SESSION['error'] = "$erros";
-         header("Location: ../register.php");
-         exit;
-    }
-
-    $produto = new Produto($pdo);
-    $produto->setNome($nomeProd);
-    $produto->setPreco($precoProd);
-    if ($produto->novoProduto()) {
-        echo "Produto inserido com sucesso!";
-    } else {
-        echo "Erro ao inserir produto.";
-    }
+if (!empty($erros)) {
+    $_SESSION['error'] = $erros;
     header("Location: ../addProd.php");
     exit;
 }
+
+$produto = new Produto($pdo);
+
+if ($produto->criar($nome, $preco)) {
+    $_SESSION['success'] = "Produto cadastrado com sucesso!";
+} else {
+    $_SESSION['error'] = ["Erro ao cadastrar produto!"];
+}
+
+header("Location: ../addProd.php");
+exit;

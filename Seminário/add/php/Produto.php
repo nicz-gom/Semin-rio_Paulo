@@ -28,25 +28,33 @@ class Produto {
     }
 
     // Inserir produto no banco
-    public function novoProduto() {
-        if (empty($this->nome) || empty($this->preco)) {
-            echo "Nome e preço são obrigatórios.";
+    public function criar($nome, $preco) {
+        if (empty($nome) || !is_numeric($preco)) {
             return false;
         }
 
-        try {
-            $novoProduto = "INSERT INTO tbprod (nome, preco) VALUES (:nome, :preco)";
-            $envio = $this->pdo->prepare($novoProduto);
+        $novoUser = $this->pdo->prepare("INSERT INTO tbprod (nome, preco) VALUES (:nome, :preco)");
+        return $novoUser->execute([':nome' => $nome, ':preco' => $preco]);
+    }
 
-            $envio->execute([
-                ':nome' => $this->nome,
-                ':preco'=> $this->preco
-            ]);
-            return true;
+    public function listarTodos() {
+        $busca = $this->pdo->query("SELECT * FROM tbprod");
+        return $busca->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-        } catch (PDOException $e) {
-            echo "Erro ao cadastrar produto: " . $e->getMessage();
-            return false;
-        }
+    public function buscarPorId($id) {
+        $buscaId = $this->pdo->prepare("SELECT * FROM tbprod WHERE id = :id");
+        $buscaId->execute([':id' => $id]);
+        return $buscaId->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function atualizar($id, $nome, $preco) {
+        $update = $this->pdo->prepare("UPDATE tbprod SET nome = :nome, preco = :preco WHERE id = :id");
+        return $update->execute([':nome' => $nome, ':preco' => $preco, ':id' => $id]);
+    }
+
+    public function deletar($id) {
+        $destroy = $this->pdo->prepare("DELETE FROM tbprod WHERE id = :id");
+        return $destroy->execute([':id' => $id]);
     }
 }

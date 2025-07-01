@@ -49,6 +49,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //     exit;
     // }
 
+    header("Location: ../index.php");
+
     // if(!empty($success)){
     //     $_SESSION['success'] = "$success";
     //     header("Location: ../index.php");

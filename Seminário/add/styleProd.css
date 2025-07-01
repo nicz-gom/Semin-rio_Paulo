@@ -75,7 +75,7 @@ form > div > img{
     height: 70px;
 }
 
-form > div > button{
+form > div > button, a{
     display: flex;
     align-items: center;
     justify-content: center;
